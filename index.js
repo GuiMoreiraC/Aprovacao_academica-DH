@@ -9,7 +9,7 @@ function alunos(nome, qtFaltas, notas) {
             for (let i = 0; i < this.notas.length; i++) {
                 media = media + this.notas[i];
             }
-            return media;
+            return media / this.notas.length;
         },
     };
 }
