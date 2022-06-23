@@ -7,17 +7,53 @@ function alunos(nome, qtFaltas, notas) {
         calcularMedia: function () {
             let media = 0;
             for (let i = 0; i < this.notas.length; i++) {
-                media = media + this.notas[i];
+                media += this.notas[i];
             }
             return media / this.notas.length;
+        },
+        faltas: function () {
+            this.qtFaltas += 1;
         },
     };
 }
 
 let aluno0 = new alunos('Denise Capitaneo', 2, [10, 7, 8, 3]);
 let aluno1 = new alunos('Denise Melo', 1, [8, 10, 7, 4]);
-let aluno2 = new alunos('Gustavo Morais', 4, [7, 5, 7, 9]);
+let aluno2 = new alunos('Gustavo Morais', 1, [7, 5, 7, 9]);
 let aluno3 = new alunos('Tiago Batista', 0, [9, 6, 10, 9]);
-let aluno4 = new alunos('Guilherme Moreira', 0, [6, 7, 5, 8]);
+let aluno4 = new alunos('Guilherme Moreira', 4, [7, 7, 9, 8]);
 
-console.log(aluno0.calcularMedia());
+let curso = {
+    nomeCurso: 'CTD - DH',
+    notaAprovacao: 7,
+    maxFaltas: 4,
+    listaEstudantes: [aluno0, aluno1, aluno2, aluno3, aluno4],
+
+    adcAluno(aluno) {
+        this.listaEstudantes.push(aluno);
+    },
+    aprovacao(nAluno) {
+        let aluno = this.listaEstudantes[nAluno];
+        return aluno.qtFaltas < this.maxFaltas && aluno.calcularMedia() >= this.notaAprovacao
+            ? true
+            : aluno.calcularMedia() >= this.notaAprovacao * 1.1
+            ? true
+            : false;
+        // if (aluno.qtFaltas < this.maxFaltas && aluno.calcularMedia() >= this.notaAprovacao)
+        //     return true;
+        // else if (aluno.calcularMedia() >= this.notaAprovacao * 1.1) return true;
+        // else return false;
+    },
+};
+
+let aluno5 = new alunos('Fulano de Tal', 2, [6, 8, 6, 5]);
+curso.adcAluno(aluno5);
+
+console.log(curso.listaEstudantes[1].nome);
+console.log(curso.aprovacao(1));
+
+console.log(curso.listaEstudantes[4].nome);
+console.log(curso.aprovacao(4));
+
+console.log(curso.listaEstudantes[5].nome);
+console.log(curso.aprovacao(5));
