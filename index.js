@@ -4,14 +4,14 @@ function alunos(nome, qtFaltas, notas) {
         nome: nome,
         qtFaltas: qtFaltas,
         notas: notas,
-        calcularMedia: function () {
+        calcularMedia() {
             let media = 0;
             for (let i = 0; i < this.notas.length; i++) {
                 media += this.notas[i];
             }
             return media / this.notas.length;
         },
-        faltas: function () {
+        faltas() {
             this.qtFaltas += 1;
         },
     };
@@ -33,6 +33,7 @@ let curso = {
         this.listaEstudantes.push(aluno);
     },
     aprovacao(nAluno) {
+        if (nAluno > this.listaEstudantes.length - 1) return 'Numero invalido';
         let aluno = this.listaEstudantes[nAluno];
         return aluno.qtFaltas < this.maxFaltas && aluno.calcularMedia() >= this.notaAprovacao
             ? true
@@ -44,16 +45,28 @@ let curso = {
         // else if (aluno.calcularMedia() >= this.notaAprovacao * 1.1) return true;
         // else return false;
     },
+    listaAprovacao() {
+        let lisAprovacao = [];
+        for (let i = 0; i < this.listaEstudantes.length; i++) {
+            lisAprovacao.push(this.aprovacao(i));
+        }
+        return lisAprovacao;
+    },
 };
 
+// Testando
 let aluno5 = new alunos('Fulano de Tal', 2, [6, 8, 6, 5]);
 curso.adcAluno(aluno5);
 
-console.log(curso.listaEstudantes[1].nome);
-console.log(curso.aprovacao(1));
+// console.log(curso.listaEstudantes[1].nome);
+// console.log(curso.aprovacao(1));
 
-console.log(curso.listaEstudantes[4].nome);
-console.log(curso.aprovacao(4));
+// console.log(curso.listaEstudantes[4].nome);
+// console.log(curso.aprovacao(4));
 
-console.log(curso.listaEstudantes[5].nome);
-console.log(curso.aprovacao(5));
+// console.log(curso.listaEstudantes[5].nome);
+// console.log(curso.aprovacao(5));
+
+// console.log(curso.aprovacao(6));
+
+console.log(curso.listaAprovacao());
