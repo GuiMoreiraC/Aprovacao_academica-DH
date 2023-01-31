@@ -1,8 +1,10 @@
-# Avaliação Final - Programação Imperativa
+# Sistema de Aprovacao academica - Avaliação Final - Programação Imperativa
 
 ## Objetivos
 
 Vamos realizar uma série de exercícios conectados entre si. O objetivo é trabalhar um pouco com exercícios que dependem da etapa anterior para manter uma linha de trabalho.
+
+Este é um projeto que tem como objetivo controlar as faltas e notas dos alunos de uma instituição de ensino. Ele possui uma função construtora que cria objetos para cada aluno, com informações como nome, quantidade de faltas e notas. Além disso, ele também possui um objeto curso, que tem informações sobre o curso, como nome, nota de aprovação e máximo de faltas. A função aprovacao() verifica se o aluno está aprovado ou não, considerando a quantidade de faltas e a média de notas. E a função listaAprovacao() retorna uma lista com o resultado da aprovação de todos os alunos do curso.
 
 _*Importante*: Ao final, lembre-se de enviar o código completo para o Github, compartilhando o link do projeto com seus professores._
 
